@@ -1,15 +1,16 @@
 # Engellerden Kaçma: Skorlu Mini Oyun
 
-swe101-development-12 rol turu, Kapı B. TypeScript + HTML Canvas ile yazılmış küçük bir engelden kaçma oyunu.
+swe101-development-12 rol turu, Kapı B. TypeScript + HTML Canvas ile yazılmış, 3 şeritli küçük bir engelden kaçma oyunu.
 
 > 🚧 Taslak: mekanik listesi tamamlandı, kod henüz yazılmadı.
 
 ## Mekanik listesi
 
 ### Ne hareket ediyor?
-- **Oyuncu:** ekranın altında, `A` (sol) ve `D` (sağ) tuşlarıyla yatay hareket eder. Hız: **320 px/s**.
-- **Düşen nesneler:** yukarıdan aşağı düşer. Hız: **200 px/s**.
-- Her **0,6 saniyede** bir yeni nesne düşer: **%70 kırmızı kutu**, **%30 yeşil daire**.
+- **Oyuncu (küre):** ekranın altındadır. Yol 3 şerit genişliğindedir ve küre hep ileri gidiyormuş gibi görünür. Aslında yol ve nesneler aşağı doğru küreye akar.
+- `A` tuşuna bir kez basınca küre bir şerit sola, `D` tuşuna basınca bir şerit sağa **kayarak** geçer. Hız: **320 px/s**.
+- **Nesneler:** yukarıdan aşağı iner. Hız: **200 px/s**.
+- Her **0,6 saniyede** bir yeni **sıra** gelir. Bir sırada 3 yuva vardır: **en fazla 2 kırmızı kutu**, **en fazla 1 yeşil daire**, kalan yuvalar boştur. En fazla 2 kırmızı olduğu için her sırada en az bir güvenli yuva bulunur. Her yuvaya **%70 kırmızı, %30 yeşil** oranıyla nesne konur, sınırlar aşılmayacak şekilde.
 - Bütün hareketler delta time ile hesaplanır (`konum += hız × dt`), kare hızından bağımsızdır.
 
 ### Ne neyle çarpışıyor?
@@ -21,11 +22,11 @@ swe101-development-12 rol turu, Kapı B. TypeScript + HTML Canvas ile yazılmı�
 | Kırmızı kutu aşağıdan çıkarsa | Hiçbir şey olmaz, sessizce kaybolur |
 
 - Çarpılan nesne hemen kaybolur. Böylece aynı nesne birden fazla karede puan veremez veya can götüremez.
-- Çarpışma kutu (AABB) olarak hesaplanır. Yeşil dairenin de görünmez kare bir hitbox'ı vardır.
+- Çarpışma kutu (AABB) olarak hesaplanır. Küre ve yeşil dairenin de görünmez kare birer hitbox'ı vardır. Küre şerit değiştirirken iki şeridin arasında olabileceği için çarpışma şerit numarasına göre değil, gerçek konuma göre hesaplanır.
 - **Kenar teması çarpışma sayılır.** Gerekçe: oyun basit, zorluğun bir kısmı buradan gelsin.
 
 ### Sınırlar
-- Oyuncu ekrandan çıkamaz, kenara gelince durur (duvar).
+- Oyuncu ekrandan çıkamaz: en soldaki şeritte `A`, en sağdaki şeritte `D` etkisizdir (duvar).
 - Bir nesne, üst kenarı ekranın altını geçtiğinde "kaçmış" sayılır.
 
 ### Skor, can ve oyunun bitişi
