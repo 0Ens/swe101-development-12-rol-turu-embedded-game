@@ -1,10 +1,33 @@
 // Oyunun kuralları: saf fonksiyonlar (DOM, canvas veya zaman erişimi yok).
 
+import { SERIT_GENISLIGI, SERIT_SAYISI } from "./config";
+
 export interface Kutu {
   x: number; // sol üst köşe
   y: number;
   w: number; // genişlik
   h: number; // yükseklik
+}
+
+// konum += hız × dt: kare hızından bağımsız hareket.
+export function ilerlet(konum: number, hiz: number, dt: number): number {
+  return konum + hiz * dt;
+}
+
+// Hedefe doğru en fazla hız × dt kadar gider, hedefi geçmez.
+export function hedefeKaydir(konum: number, hedef: number, hiz: number, dt: number): number {
+  const adim = hiz * dt;
+  if (Math.abs(hedef - konum) <= adim) return hedef;
+  return konum + Math.sign(hedef - konum) * adim;
+}
+
+// yon: -1 sol, +1 sağ. En kenardaki şeritten öteye geçilmez (duvar).
+export function seritDegistir(serit: number, yon: -1 | 1): number {
+  return Math.min(SERIT_SAYISI - 1, Math.max(0, serit + yon));
+}
+
+export function seritMerkezi(serit: number): number {
+  return serit * SERIT_GENISLIGI + SERIT_GENISLIGI / 2;
 }
 
 export const YESIL_PUANI = 10;

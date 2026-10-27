@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+  hedefeKaydir,
+  ilerlet,
   kirmiziyaCarpti,
   kutularCarpisiyorMu,
   oyunBittiMi,
+  seritDegistir,
+  seritMerkezi,
   yesilKacti,
   yesilYakalandi,
   type Kutu,
@@ -55,6 +59,48 @@ describe("skor kuralları", () => {
 
   it("ceza skoru 0'ın altına düşüremez", () => {
     expect(yesilKacti(5)).toBe(0);
+  });
+});
+
+describe("delta time ile hareket", () => {
+  it("200 px/s hızla yarım saniyede 100 piksel gidilir", () => {
+    expect(ilerlet(0, 200, 0.5)).toBe(100);
+  });
+
+  it("60 FPS ve 30 FPS'te 1 saniye sonunda aynı yere varılır", () => {
+    let ali = 0;
+    for (let i = 0; i < 60; i++) ali = ilerlet(ali, 200, 1 / 60);
+    let ayse = 0;
+    for (let i = 0; i < 30; i++) ayse = ilerlet(ayse, 200, 1 / 30);
+    expect(ali).toBeCloseTo(200);
+    expect(ayse).toBeCloseTo(200);
+  });
+
+  it("küre hedefe doğru hız × dt kadar kayar", () => {
+    expect(hedefeKaydir(80, 240, 320, 0.1)).toBe(112);
+    expect(hedefeKaydir(240, 80, 320, 0.1)).toBe(208);
+  });
+
+  it("küre hedefi geçmez, tam hedefte durur", () => {
+    expect(hedefeKaydir(238, 240, 320, 0.1)).toBe(240);
+  });
+});
+
+describe("şerit değiştirme", () => {
+  it("ortadaki şeritten sağa ve sola geçilir", () => {
+    expect(seritDegistir(1, 1)).toBe(2);
+    expect(seritDegistir(1, -1)).toBe(0);
+  });
+
+  it("en kenardaki şeritten öteye geçilmez (duvar)", () => {
+    expect(seritDegistir(2, 1)).toBe(2);
+    expect(seritDegistir(0, -1)).toBe(0);
+  });
+
+  it("şerit merkezleri ekranı eşit böler", () => {
+    expect(seritMerkezi(0)).toBe(80);
+    expect(seritMerkezi(1)).toBe(240);
+    expect(seritMerkezi(2)).toBe(400);
   });
 });
 
