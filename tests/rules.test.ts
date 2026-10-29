@@ -4,9 +4,11 @@ import {
   ilerlet,
   kirmiziyaCarpti,
   kutularCarpisiyorMu,
+  nesneKactiMi,
   oyunBittiMi,
   seritDegistir,
   seritMerkezi,
+  siraOlustur,
   yesilKacti,
   yesilYakalandi,
   type Kutu,
@@ -101,6 +103,40 @@ describe("şerit değiştirme", () => {
     expect(seritMerkezi(0)).toBe(80);
     expect(seritMerkezi(1)).toBe(240);
     expect(seritMerkezi(2)).toBe(400);
+  });
+});
+
+// Verilen sayıları sırayla döndüren sahte rastgele üretici.
+const sirayla = (...sayilar: number[]) => {
+  let i = 0;
+  return () => sayilar[i++];
+};
+
+describe("sıra oluşturma", () => {
+  it("bir sırada en fazla 2 kırmızı olur, üçüncü yuva boş kalır", () => {
+    expect(siraOlustur(() => 0)).toEqual(["kirmizi", "kirmizi", null]);
+  });
+
+  it("bir sırada en fazla 1 yeşil olur", () => {
+    expect(siraOlustur(() => 0.99)).toEqual(["yesil", null, null]);
+  });
+
+  it("kırmızı ve yeşil aynı sırada karışık gelebilir", () => {
+    expect(siraOlustur(sirayla(0, 0.99, 0))).toEqual(["kirmizi", "yesil", "kirmizi"]);
+  });
+
+  it("rastgele sayı tam 0.7 ise yeşil seçilir (sınır)", () => {
+    expect(siraOlustur(sirayla(0.7, 0, 0))).toEqual(["yesil", "kirmizi", "kirmizi"]);
+  });
+});
+
+describe("nesnenin kaçması", () => {
+  it("üst kenarı ekranın altındaysa henüz kaçmamıştır (sınır)", () => {
+    expect(nesneKactiMi(640)).toBe(false);
+  });
+
+  it("üst kenarı ekranın altını geçince kaçmıştır", () => {
+    expect(nesneKactiMi(641)).toBe(true);
   });
 });
 

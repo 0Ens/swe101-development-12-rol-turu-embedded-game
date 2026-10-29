@@ -1,6 +1,15 @@
 // Oyunun kuralları: saf fonksiyonlar (DOM, canvas veya zaman erişimi yok).
 
-import { SERIT_GENISLIGI, SERIT_SAYISI } from "./config";
+import {
+  EKRAN_YUKSEKLIGI,
+  EN_FAZLA_KIRMIZI,
+  EN_FAZLA_YESIL,
+  KIRMIZI_ORANI,
+  SERIT_GENISLIGI,
+  SERIT_SAYISI,
+} from "./config";
+
+export type NesneTuru = "kirmizi" | "yesil";
 
 export interface Kutu {
   x: number; // sol üst köşe
@@ -28,6 +37,35 @@ export function seritDegistir(serit: number, yon: -1 | 1): number {
 
 export function seritMerkezi(serit: number): number {
   return serit * SERIT_GENISLIGI + SERIT_GENISLIGI / 2;
+}
+
+// Her yuva için %70 kırmızı / %30 yeşil seçilir; o tür için sınır dolduysa yuva boş (null) kalır.
+// rastgele: 0 ile 1 arası sayı döndürür (oyunda Math.random, testte sabit değerler).
+export function siraOlustur(rastgele: () => number): (NesneTuru | null)[] {
+  const sira: (NesneTuru | null)[] = [];
+  let kirmizi = 0;
+  let yesil = 0;
+  for (let i = 0; i < SERIT_SAYISI; i++) {
+    if (rastgele() < KIRMIZI_ORANI) {
+      if (kirmizi < EN_FAZLA_KIRMIZI) {
+        sira.push("kirmizi");
+        kirmizi++;
+      } else {
+        sira.push(null);
+      }
+    } else if (yesil < EN_FAZLA_YESIL) {
+      sira.push("yesil");
+      yesil++;
+    } else {
+      sira.push(null);
+    }
+  }
+  return sira;
+}
+
+// Nesne, üst kenarı ekranın altını geçince kaçmış sayılır.
+export function nesneKactiMi(y: number): boolean {
+  return y > EKRAN_YUKSEKLIGI;
 }
 
 export const YESIL_PUANI = 10;

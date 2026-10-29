@@ -10,4 +10,10 @@ export const NESNE_HIZI = 200; // px/s, aşağı doğru
 export const KURE_HIZI = 320; // px/s, şerit değiştirirken
 export const SIRA_ARALIGI = 0.6; // saniye, iki sıra arası
 export const KIRMIZI_ORANI = 0.7;
+export const EN_FAZLA_KIRMIZI = 2; // bir sırada
+export const EN_FAZLA_YESIL = 1; // bir sırada
 export const BASLANGIC_CANI = 3;
+
+export const KURE_BOYUTU = 40;
+export const NESNE_BOYUTU = 40;
+export const KURE_Y = EKRAN_YUKSEKLIGI - 100; // kürenin üst kenarı
