@@ -88,7 +88,3 @@ Kuralların hiçbiri DOM'a, canvas'a ya da saate dokunmaz. Rastgelelik bile para
 - Delta time sayesinde oyunun fiziğini her cihazda aynı olacak şekilde kodladığımızı öğrendim.
 - Testi bilerek bozunca aldığım kırmızılarla testlerin gerçekten çalıştığını ve hatayı yakaladığını gördüm.
 - Oyunu ilk oynadığımda bazı durumlarda yeşili almanın imkânsız olduğunu fark ettim. Bundan sonra ayarlarda (küre hızı ve sıra aralığı) değişiklik yaparak oyunun adil olmasını sağladım.
-
-## Karar notu
-
-Bu proje bana genel olarak zor geldi, çünkü diğer projelerime göre daha karışıktı: düşünmemiz gereken çok hesap vardı ve bu kadar çok mikro durumu düşünmek beni yordu. Oyun geliştirme şu an için bana göre değil; profesyonel alanımı ilk defa seçeceğim ve yaparken doğrudan zevk aldığım bir alan olması benim için önemli. Projeye başlamadan önce de oyun yapma sevdam yoktu, bu yüzden yaparken biraz işkence gibi geldi; sanırım oynama kısmı benim için daha eğlenceli. :D Yine de yaptığımız her değişiklikten sonra oyunu local server'da test etmek zevkliydi. Kapı A'yı seçmedim, çünkü oyun tarafının da ilgi çekici olabileceğini düşündüm; ama onu da bir ara yapacağım.
