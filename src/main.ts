@@ -31,7 +31,27 @@ window.addEventListener("keydown", (e) => {
   if (e.repeat) return; // basılı tutmak tek şerit sayılır
   if (e.code === "KeyA") bekleyenYon = -1;
   if (e.code === "KeyD") bekleyenYon = 1;
+  if (e.code === "Space") {
+    e.preventDefault(); // sayfa kaymasın
+    if (durum.bitti) durum = baslangicDurumu();
+  }
 });
+
+function oyunBittiEkrani(skor: number): void {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+  ctx.fillRect(0, 0, EKRAN_GENISLIGI, EKRAN_YUKSEKLIGI);
+
+  const ortaX = EKRAN_GENISLIGI / 2;
+  const ortaY = EKRAN_YUKSEKLIGI / 2;
+  ctx.fillStyle = RENK.yazi;
+  ctx.textAlign = "center";
+  ctx.font = "bold 40px sans-serif";
+  ctx.fillText("OYUN BİTTİ", ortaX, ortaY - 40);
+  ctx.font = "28px sans-serif";
+  ctx.fillText(`Skor: ${skor}`, ortaX, ortaY + 10);
+  ctx.font = "18px sans-serif";
+  ctx.fillText("Yeniden başlamak için SPACE", ortaX, ortaY + 60);
+}
 
 function ciz(d: OyunDurumu): void {
   ctx.fillStyle = RENK.arkaPlan;
@@ -69,6 +89,8 @@ function ciz(d: OyunDurumu): void {
   ctx.fillText(`Skor: ${d.skor}`, 12, 30);
   ctx.textAlign = "right";
   ctx.fillText(`Can: ${"♥".repeat(Math.max(0, d.can))}`, EKRAN_GENISLIGI - 12, 30);
+
+  if (d.bitti) oyunBittiEkrani(d.skor);
 }
 
 let oncekiZaman = performance.now();
