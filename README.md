@@ -84,7 +84,10 @@ Kuralların hiçbiri DOM'a, canvas'a ya da saate dokunmaz. Rastgelelik bile para
 
 ## Ne öğrendim
 
-_Öğrenci tarafından yazılacak._
+- `<` ile `<=` arasındaki farkın, kırmızıya çarpma durumlarını kaçırmamak ve oyunun kurallara uygun çalışması için gerekli ve önemli bir ayrıntı olduğunu öğrendim.
+- Delta time sayesinde oyunun fiziğini her cihazda aynı olacak şekilde kodladığımızı öğrendim.
+- Testi bilerek bozunca aldığım kırmızılarla testlerin gerçekten çalıştığını ve hatayı yakaladığını gördüm.
+- Oyunu ilk oynadığımda bazı durumlarda yeşili almanın imkânsız olduğunu fark ettim. Bundan sonra ayarlarda (küre hızı ve sıra aralığı) değişiklik yaparak oyunun adil olmasını sağladım.
 
 ## Karar notu
 
