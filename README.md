@@ -88,4 +88,4 @@ _Öğrenci tarafından yazılacak._
 
 ## Karar notu
 
-_Öğrenci tarafından yazılacak (3-5 cümle: bu tadım bana ne hissettirdi, Kapı A'yı neden seçmedim?)._
+Bu proje bana genel olarak zor geldi, çünkü diğer projelerime göre daha karışıktı: düşünmemiz gereken çok hesap vardı ve bu kadar çok mikro durumu düşünmek beni yordu. Oyun geliştirme şu an için bana göre değil; profesyonel alanımı ilk defa seçeceğim ve yaparken doğrudan zevk aldığım bir alan olması benim için önemli. Projeye başlamadan önce de oyun yapma sevdam yoktu, bu yüzden yaparken biraz işkence gibi geldi; sanırım oynama kısmı benim için daha eğlenceli. :D Yine de yaptığımız her değişiklikten sonra oyunu local server'da test etmek zevkliydi. Kapı A'yı seçmedim, çünkü oyun tarafının da ilgi çekici olabileceğini düşündüm; ama onu da bir ara yapacağım.
