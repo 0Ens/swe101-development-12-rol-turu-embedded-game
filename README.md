@@ -2,6 +2,8 @@
 
 swe101-development-12 rol turu, Kapı B. TypeScript + HTML Canvas ile yazılmış, 3 şeritli küçük bir engelden kaçma oyunu.
 
+🎮 **Tarayıcıda oyna:** https://eneserul.itch.io/engellerden-kacma (kurulum gerekmez; oyuna bir kez tıklayıp klavyeyle oynayın)
+
 **Kontroller:** `A` sol şerit, `D` sağ şerit, `Space` oyun bitince yeniden başlat.
 
 ## Mekanik listesi
