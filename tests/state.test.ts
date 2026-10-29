@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { EKRAN_YUKSEKLIGI, KURE_Y, NESNE_BOYUTU, SIRA_ARALIGI } from "../src/game/config";
+import { EKRAN_YUKSEKLIGI, KURE_HIZI, KURE_Y, NESNE_BOYUTU, SIRA_ARALIGI } from "../src/game/config";
 import { baslangicDurumu, oyunuIlerlet, type Nesne, type OyunDurumu } from "../src/game/state";
 
 const hicKimse = { yon: 0 } as const;
@@ -23,7 +23,7 @@ describe("oyunuIlerlet", () => {
   it("D tuşu hedef şeridi değiştirir, küre o yöne kaymaya başlar", () => {
     const sonra = oyunuIlerlet(durum(), { yon: 1 }, 0.1, hepKirmizi);
     expect(sonra.kureSerit).toBe(2);
-    expect(sonra.kureX).toBe(272);
+    expect(sonra.kureX).toBeCloseTo(240 + KURE_HIZI * 0.1);
   });
 
   it("kırmızıya çarpınca 1 can gider ve kırmızı kaybolur", () => {
