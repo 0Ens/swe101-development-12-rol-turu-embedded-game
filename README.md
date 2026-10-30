@@ -1,6 +1,8 @@
 # Engellerden Kaçma: Skorlu Mini Oyun
 
-swe101-development-12 rol turu, Kapı B. TypeScript + HTML Canvas ile yazılmış, 3 şeritli küçük bir engelden kaçma oyunu.
+TypeScript ve HTML Canvas ile yazıp itch.io'da yayınladığım 3 şeritli engelden kaçma oyunu.
+
+![Oyun ekranı](screenshot.png)
 
 🎮 **Tarayıcıda oyna:** https://eneserul.itch.io/engellerden-kacma (kurulum gerekmez; oyuna bir kez tıklayıp klavyeyle oynayın)
 
@@ -83,6 +85,10 @@ tests/               Vitest testleri
 ```
 
 Kuralların hiçbiri DOM'a, canvas'a ya da saate dokunmaz. Rastgelelik bile parametre olarak verilir (oyunda `Math.random`, testte sabit değerler). Bu sayede bütün oyun mantığı tarayıcı olmadan test edilebilir.
+
+## AI kullanımı
+
+Bu projede Claude Code ile çalıştım. Testlerin ve bazı fonksiyonların bir kısmını Claude Code yazdı; kalan testlerin neredeyse tamamını onları örnek alarak ben yazdım, öğrenmek için bu şekilde ilerledik. Oyunu oynayarak bazı yeşillere ulaşmanın imkânsız olduğunu ben fark ettim. Claude Code'un yaptığı her şeyi genel olarak kontrol ettim.
 
 ## Ne öğrendim
 
